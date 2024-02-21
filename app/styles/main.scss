@@ -1,5 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;600&display=swap');
 @import "colors";
 @import "logs";
 @import "dashboard";
 @import "app_table";
 @import "job_list";
+@import "header";
+
+* {
+  font-family: Maven Pro, 'sans-serif';
+}
+
+.vertical-line {
+  border-left: 1px $grey2-border solid;
+  height: 80%;
+  align-self: center;
+}

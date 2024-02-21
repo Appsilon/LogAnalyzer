@@ -25,6 +25,7 @@ box::use(
   app/view/mod_app_table,
   app/view/mod_job_list,
   app/view/mod_logs,
+  app/view/mod_header,
   app/logic/api_utils[get_app_list]
 )
 
@@ -33,17 +34,27 @@ ui <- function(id) {
   ns <- NS(id)
   fluidPage(
     class = "dashboard-body",
+    mod_header$ui("header"),
     div(
-      class = "app-table",
-      mod_app_table$ui(ns("app_table"))
-    ),
-    div(
-      class = "job-list",
-      uiOutput(ns("job_list_pane"))
-    ),
-    div(
-      class = "logs",
-      uiOutput(ns("logs_pane"))
+      class = "dashboard-container",
+      div(
+        class = "app-table",
+        mod_app_table$ui(ns("app_table"))
+      ),
+      div(
+        class = "vertical-line"
+      ),
+      div(
+        class = "job-list",
+        uiOutput(ns("job_list_pane"))
+      ),
+      div(
+        class = "vertical-line"
+      ),
+      div(
+        class = "logs",
+        uiOutput(ns("logs_pane"))
+      )
     )
   )
 }
@@ -53,6 +64,8 @@ server <- function(id) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
+
+    mod_header$server("header")
 
     state <- reactiveValues()
     state$selected_app <- reactive({})
