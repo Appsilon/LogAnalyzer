@@ -7,9 +7,9 @@
 #' Default is TRUE
 #' @export
 check_text_error <- function(
-    text,
-    wordlist = c("halt", "err", "terminat", "not found"),
-    ignore_case = TRUE
+  text,
+  wordlist = c("halt", "err", "terminat", "not found"),
+  ignore_case = TRUE
 ) {
   grepl(
     paste(wordlist, collapse = "|"),
@@ -25,9 +25,9 @@ check_text_error <- function(
 #' @param to Character. New format. Default is "%Y-%m-%d %H:%M:%S"
 #' @export
 format_timestamp <- function(
-    timestamp,
-    from = "%Y-%m-%dT%H:%M:%OSZ",
-    to = "%Y-%m-%d %H:%M:%S"
+  timestamp,
+  from = "%Y-%m-%dT%H:%M:%OSZ",
+  to = "%Y-%m-%d %H:%M:%S"
 ) {
   format(
     as.POSIXct(

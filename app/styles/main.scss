@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;600&display=swap');
+@import "https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;600&display=swap";
 @import "colors";
 @import "logs";
 @import "dashboard";
@@ -7,7 +7,7 @@
 @import "header";
 
 * {
-  font-family: Maven Pro, 'sans-serif';
+  font-family: "Maven Pro", sans-serif;
 }
 
 .vertical-line {

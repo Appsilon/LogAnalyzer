@@ -18,7 +18,7 @@ box::use(
 #'
 #' @export
 process_app_data <- function(
-    app_data
+  app_data
 ) {
   app_info <- strsplit(app_data, "_-_")[[1]]
   div(

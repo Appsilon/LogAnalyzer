@@ -15,7 +15,7 @@ box::use(
 #'
 #' @export
 process_log_data <- function(
-    log_data
+  log_data
 ) {
   log_info <- strsplit(log_data, "_-_")[[1]]
   status <- get_status_info(log_info[1], log_info[3])
@@ -42,8 +42,8 @@ process_log_data <- function(
 }
 
 get_status_info <- function(
-    output_type,
-    log_data
+  output_type,
+  log_data
 ) {
   if (output_type == "stdout") {
     c("green", "circle-info")

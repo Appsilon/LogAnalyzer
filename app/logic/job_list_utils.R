@@ -19,7 +19,7 @@ box::use(
 #'
 #' @export
 process_job_data <- function(
-    job_data
+  job_data
 ) {
   job_info <- strsplit(job_data, "_-_")[[1]]
   div(

@@ -33,9 +33,9 @@ get_access_token <- function() {
 #' @param versioned Logical. Whether to use versioned API. Default is FALSE
 #' @return url for the API
 get_api_url <- function(
-    host = Sys.getenv("CONNECT_SERVER"),
-    endpoint = "content",
-    version = "v1"
+  host = Sys.getenv("CONNECT_SERVER"),
+  endpoint = "content",
+  version = "v1"
 ) {
   glue("{host}__api__/{version}/{endpoint}/")
 }
@@ -49,9 +49,9 @@ get_api_url <- function(
 #' Default is FALSE
 #' @export
 get_app_list <- function(
-    app_mode_filter = "shiny",
-    endpoint = "content",
-    dry_run = FALSE
+  app_mode_filter = "shiny",
+  endpoint = "content",
+  dry_run = FALSE
 ) {
 
   url <- get_api_url(
@@ -82,9 +82,9 @@ get_app_list <- function(
 #' Default is FALSE
 #' @export
 get_job_list <- function(
-    guid = NULL,
-    endpoint = "content",
-    dry_run = FALSE
+  guid = NULL,
+  endpoint = "content",
+  dry_run = FALSE
 ) {
 
   url <- get_api_url(
@@ -118,11 +118,11 @@ get_job_list <- function(
 #' Default is FALSE
 #' @export
 get_job_logs <- function(
-    guid = NULL,
-    job_key = NULL,
-    endpoint = "content",
-    tail = FALSE,
-    dry_run = FALSE
+  guid = NULL,
+  job_key = NULL,
+  endpoint = "content",
+  tail = FALSE,
+  dry_run = FALSE
 ) {
 
   url <- get_api_url(
@@ -157,10 +157,10 @@ get_job_logs <- function(
 #' Default is FALSE
 #' @export
 download_job_logs <- function(
-    guid = NULL,
-    job_key = NULL,
-    endpoint = "content",
-    dry_run = FALSE
+  guid = NULL,
+  job_key = NULL,
+  endpoint = "content",
+  dry_run = FALSE
 ) {
 
   url <- get_api_url(
