@@ -1,0 +1,23 @@
+.app-entry {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .app-title {
+    font-size: 1.1em;
+  }
+
+  .app-link-icon {
+    font-size: 0.5em;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .app-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: $grey-text;
+    font-size: 0.75em;
+  }
+}

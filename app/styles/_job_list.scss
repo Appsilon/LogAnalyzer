@@ -1,0 +1,10 @@
+@import "colors";
+
+.job-entry {
+  .job-key,
+  .job-start-time,
+  .job-end-time {
+    font-size: 0.75em;
+    color: $grey-text;
+  }
+}

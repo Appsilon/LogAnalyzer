@@ -1,0 +1,64 @@
+.wrapper {
+  background: none !important;
+}
+
+.content-wrapper {
+  background: $white;
+  color: $black-text;
+  height: 90vh;
+  font-family: "Segoe UI VSS (Regular)", "Segoe UI", sans-serif;
+}
+
+.dashboard-body {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  height: 92.5%;
+
+  .Reactable {
+    background: transparent;
+  }
+
+  .rt-search {
+    width: 80%;
+    margin: 10px;
+    align-self: center;
+    text-align: center;
+    border-radius: 0;
+  }
+
+  .rt-tr-header {
+    display: none !important;
+  }
+
+  .rt-tr {
+    align-items: center;
+  }
+
+  .rt-tr-selected {
+    background: $selected-row;
+  }
+
+  .app-table {
+    background: $grey1;
+    border-right: $grey1-border solid 1px;
+    width: 20%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .job-list {
+    background: $grey2;
+    border-right: $grey2-border solid 1px;
+    width: 15%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .logs {
+    background: $white;
+    width: 65%;
+    height: 100%;
+    overflow-y: auto;
+  }
+}
