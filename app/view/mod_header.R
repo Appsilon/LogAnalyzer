@@ -1,14 +1,12 @@
 box::use(
   shiny[
-    NS,
-    moduleServer,
+    actionLink,
     div,
-    img,
     h2,
-    icon,
-    actionButton,
-    actionLink
-  ]
+    img,
+    moduleServer,
+    NS
+  ],
 )
 
 #' @export

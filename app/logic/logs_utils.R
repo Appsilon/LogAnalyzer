@@ -1,13 +1,13 @@
 box::use(
   glue[glue],
   shiny[
-    icon,
-    div
-  ]
+    div,
+    icon
+  ],
 )
 
 box::use(
-  app/logic/general_utils[check_text_error, format_timestamp]
+  app/logic/general_utils[check_text_error, format_timestamp],
 )
 
 #' Function to process each row for the log table

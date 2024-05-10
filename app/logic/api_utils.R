@@ -1,16 +1,16 @@
 box::use(
+  dplyr[filter],
+  glue[glue],
   httr2[
-    request,
     req_auth_bearer_token,
     req_dry_run,
     req_perform,
-    resp_body_string,
-    req_user_agent
+    req_user_agent,
+    request,
+    resp_body_string
   ],
-  magrittr[`%>%`],
   jsonlite[fromJSON],
-  dplyr[filter],
-  glue[glue]
+  magrittr[`%>%`],
 )
 
 #' Simple function to get the access token from environment
@@ -30,7 +30,7 @@ get_access_token <- function() {
 #' Simple function to make an API url
 #' @param host Character. Default CONNECT_SERVER set as an envvar
 #' @param endpoint Character. Default is "content"
-#' @param versioned Logical. Whether to use versioned API. Default is FALSE
+#' @param version Logical. Whether to use versioned API. Default is "v1"
 #' @return url for the API
 get_api_url <- function(
   host = Sys.getenv("CONNECT_SERVER"),
@@ -44,7 +44,7 @@ get_api_url <- function(
 #'
 #' @param app_mode_filter Character. The filter for app_mode in the API
 #' response. Default is "shiny".
-#' @param url Character. The URL for API endpoint
+#' @param endpoint Character. Default is "content"
 #' @param dry_run Logical. Whether to dry run the API for debugging.
 #' Default is FALSE
 #' @export
@@ -77,7 +77,7 @@ get_app_list <- function(
 #' Function to get a list of all jobs for a specific app
 #'
 #' @param guid Character. The guid for the app in question
-#' @param url Character. The URL for API endpoint
+#' @param endpoint Character. Default is "content"
 #' @param dry_run Logical. Whether to dry run the API for debugging.
 #' Default is FALSE
 #' @export
@@ -112,7 +112,7 @@ get_job_list <- function(
 #'
 #' @param guid Character. The guid for the app in question
 #' @param job_key Character. The key for the job in question
-#' @param url Character. The URL for API endpoint
+#' @param endpoint Character. Default is "content"
 #' @param tail Logical. Whether to show the tail only for the logs
 #' @param dry_run Logical. Whether to dry run the API for debugging.
 #' Default is FALSE
@@ -152,7 +152,7 @@ get_job_logs <- function(
 #'
 #' @param guid Character. The guid for the app in question
 #' @param job_key Character. The key for the job in quesrtion
-#' @param url Character. The URL for API endpoint
+#' @param endpoint Character. Default is "content"
 #' @param dry_run Logical. Whether to dry run the API for debugging.
 #' Default is FALSE
 #' @export
