@@ -14,3 +14,18 @@ The LogAnalyzer open-source app is a simple, plug and play application developed
 It was our collaboration with <img src="https://github.com/Appsilon/LogAnalyzer/assets/26517718/b26fd60b-4989-4d31-a01e-5cf865f5ec9b" alt="Elkem" width="50"/>  which led to the creation of this app. The initial idea came from use-cases where we realised we wanted to track all the logs and be able to read them properly since Posit Connect was the de facto deployment environment. When we made this app, we realised there was potential in sharing this with the rest of the community and invite everyone to use it and add it. We appreciate and thank Elkem for their openness to share it with the world.
 
 You can read more about Appsilon and Elkem's collaboration on our case study [here](https://www.appsilon.com/case-studies/refining-elkems-processes-with-advanced-data-analytics).
+
+## Appsilon
+
+<img src="https://avatars0.githubusercontent.com/u/6096772" align="right" alt="" width="6%" />
+
+Appsilon is a **Posit (formerly RStudio) Full Service Certified Partner**.<br/>
+Learn more at [appsilon.com](https://appsilon.com).
+
+Get in touch [opensource@appsilon.com](mailto:opensource@appsilon.com)
+
+Explore the [Rhinoverse](https://rhinoverse.dev) - a family of R packages built around [Rhino](https://appsilon.github.io/rhino/)!
+
+<a href = "https://appsilon.us16.list-manage.com/subscribe?u=c042d7c0dbf57c5c6f8b54598&id=870d5bfc05" target="_blank">
+  <img src="https://raw.githubusercontent.com/Appsilon/website-cdn/gh-pages/shiny_weekly_light.jpg" alt="Subscribe for Shiny tutorials, exclusive articles, R/Shiny community events, and more."/>
+</a>
