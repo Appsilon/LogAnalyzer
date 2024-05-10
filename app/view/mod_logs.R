@@ -1,32 +1,34 @@
+# nolint start: box_func_import_count_linter
 box::use(
+  dplyr[mutate],
+  glue[glue],
+  magrittr[`%>%`],
+  reactable[
+    colDef,
+    reactable,
+    reactableOutput,
+    renderReactable
+  ],
+  shinycssloaders[withSpinner],
   shiny[
-    moduleServer,
-    NS,
     div,
-    reactive,
-    req,
     downloadButton,
     downloadHandler,
     icon,
+    moduleServer,
+    NS,
+    observeEvent,
+    reactive,
     renderUI,
-    uiOutput,
-    observeEvent
+    req,
+    uiOutput
   ],
-  reactable[
-    reactable,
-    renderReactable,
-    reactableOutput,
-    colDef
-  ],
-  dplyr[mutate],
-  magrittr[`%>%`],
-  glue[glue],
-  shinycssloaders[withSpinner]
 )
+# nolint end
 
 box::use(
-  app/logic/api_utils[get_job_logs, download_job_logs],
-  app/logic/logs_utils[process_log_data]
+  app/logic/api_utils[download_job_logs, get_job_logs],
+  app/logic/logs_utils[process_log_data],
 )
 
 #' @export

@@ -1,16 +1,15 @@
 box::use(
   shiny[
-    div,
-    span,
-    icon,
     a,
+    div,
+    icon,
+    span,
     strong
   ],
-  glue[glue]
 )
 
 box::use(
-  app/logic/general_utils[format_timestamp]
+  app/logic/general_utils[format_timestamp],
 )
 
 #' Function to process each row for the app table

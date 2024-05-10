@@ -1,28 +1,26 @@
 box::use(
-  shiny[
-    NS,
-    div,
-    moduleServer,
-    reactive
-  ],
-  reactable[
-    reactable,
-    renderReactable,
-    reactableOutput,
-    getReactableState,
-    colDef
-  ],
   dplyr[
-    select,
-    mutate
+    mutate,
+    select
   ],
   magrittr[`%>%`],
-  glue[glue],
-  shinycssloaders[withSpinner]
+  reactable[
+    colDef,
+    getReactableState,
+    reactable,
+    reactableOutput,
+    renderReactable
+  ],
+  shiny[
+    moduleServer,
+    NS,
+    reactive
+  ],
+  shinycssloaders[withSpinner],
 )
 
 box::use(
-  app/logic/app_table_utils[process_app_data]
+  app/logic/app_table_utils[process_app_data],
 )
 
 #' @export

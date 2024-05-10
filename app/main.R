@@ -1,32 +1,34 @@
+# nolint start: box_func_import_count_linter
 box::use(
+  dplyr[select],
+  magrittr[`%>%`],
   shiny[
-    NS,
-    moduleServer,
     div,
+    fluidPage,
+    img,
+    isTruthy,
+    moduleServer,
+    NS,
+    observeEvent,
+    p,
     reactive,
     reactiveValues,
-    observeEvent,
-    isTruthy,
-    tags,
-    tagList,
-    renderUI,
-    uiOutput,
-    img,
     removeUI,
-    p,
-    fluidPage
+    renderUI,
+    tagList,
+    tags,
+    uiOutput
   ],
-  magrittr[`%>%`],
-  dplyr[select],
-  shinycssloaders[withSpinner]
+  shinycssloaders[withSpinner],
 )
+# nolint end
 
 box::use(
+  app/logic/api_utils[get_app_list],
   app/view/mod_app_table,
+  app/view/mod_header,
   app/view/mod_job_list,
   app/view/mod_logs,
-  app/view/mod_header,
-  app/logic/api_utils[get_app_list]
 )
 
 #' @export

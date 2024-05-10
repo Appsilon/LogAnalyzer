@@ -1,16 +1,12 @@
 box::use(
   shiny[
     div,
-    span,
-    icon,
-    a,
     strong
   ],
-  glue[glue]
 )
 
 box::use(
-  app/logic/general_utils[format_timestamp]
+  app/logic/general_utils[format_timestamp],
 )
 
 

@@ -1,29 +1,28 @@
 box::use(
+  dplyr[
+    mutate,
+    select
+  ],
+  magrittr[`%>%`],
+  reactable[
+    colDef,
+    getReactableState,
+    reactable,
+    reactableOutput,
+    renderReactable
+  ],
   shiny[
     moduleServer,
     NS,
-    div,
     reactive,
     req
   ],
-  reactable[
-    reactable,
-    renderReactable,
-    reactableOutput,
-    getReactableState,
-    colDef
-  ],
-  dplyr[
-    select,
-    mutate
-  ],
-  magrittr[`%>%`],
-  shinycssloaders[withSpinner]
+  shinycssloaders[withSpinner],
 )
 
 box::use(
   app/logic/api_utils[get_job_list],
-  app/logic/job_list_utils[process_job_data]
+  app/logic/job_list_utils[process_job_data],
 )
 
 #' @export

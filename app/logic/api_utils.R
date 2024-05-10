@@ -1,16 +1,16 @@
 box::use(
+  dplyr[filter],
+  glue[glue],
   httr2[
-    request,
     req_auth_bearer_token,
     req_dry_run,
     req_perform,
-    resp_body_string,
-    req_user_agent
+    req_user_agent,
+    request,
+    resp_body_string
   ],
-  magrittr[`%>%`],
   jsonlite[fromJSON],
-  dplyr[filter],
-  glue[glue]
+  magrittr[`%>%`],
 )
 
 #' Simple function to get the access token from environment
