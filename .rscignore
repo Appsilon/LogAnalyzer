@@ -4,4 +4,7 @@
 .Renviron
 .rhino
 .rscignore
+build_local_docs.sh
+docs
+img
 tests

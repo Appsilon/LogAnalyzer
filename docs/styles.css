@@ -1,0 +1,22 @@
+ .navbar-nav > .nav-item > .nav-link.active {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.navbar-nav > .nav-item > a.nav-link:hover {
+  color: #c2c2c2 !important;
+}
+
+.navbar a.navbar-brand:hover {
+  color: #c2c2c2 !important;
+}
+
+#footer-banner {
+  max-width: 796px;
+}
+
+.navbar-logo {
+  height: auto;
+  width: 4rem;
+  max-height: max-content;
+}
