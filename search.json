@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "README.html",
+    "href": "README.html",
+    "title": "LogAnalyzer",
+    "section": "",
+    "text": "The LogAnalyzer open-source app is a simple, plug and play application developed first in collaboration with Elkem. The app provides an ability to get semantically coloured logs for applications deployed on Posit Connect by simply changing the default environment variables and deploying it on Posit Connect. Given the general usefulness of the app, we have decided to share it with the wider community to use and improve upon it. No more sifting through long text files; you can simply find the reds and see where things break. It has never been easier to investigate what goes wrong with your applications."
+  },
+  {
+    "objectID": "README.html#appsilon",
+    "href": "README.html#appsilon",
+    "title": "LogAnalyzer",
+    "section": "Appsilon",
+    "text": "Appsilon\n\nAppsilon is a Posit (formerly RStudio) Full Service Certified Partner. Learn more at appsilon.com.\nGet in touch opensource@appsilon.com\nExplore the Rhinoverse - a family of R packages built around Rhino!"
+  }
+]
