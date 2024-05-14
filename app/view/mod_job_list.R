@@ -9,13 +9,15 @@ box::use(
     getReactableState,
     reactable,
     reactableOutput,
-    renderReactable
+    renderReactable,
+    reactableLang
   ],
   shiny[
     moduleServer,
     NS,
     reactive,
-    req
+    req,
+    isTruthy
   ],
   shinycssloaders[withSpinner],
 )
@@ -48,25 +50,31 @@ server <- function(id, state) {
 
     output$job_list_table <- renderReactable({
 
-      processed_jobs <- job_list_data() %>%
-        select(id, key, start_time, end_time) %>%
-        mutate(
-          job = paste(
-            id,
-            key,
-            start_time,
-            end_time,
-            sep = "_-_"
+      if (length(job_list_data())) {
+        processed_jobs <- job_list_data() %>%
+          select(id, key, start_time, end_time) %>%
+          mutate(
+            job = paste(
+              id,
+              key,
+              start_time,
+              end_time,
+              sep = "_-_"
+            )
+          ) %>%
+          select(
+            -c(
+              id,
+              key,
+              start_time,
+              end_time
+            )
           )
-        ) %>%
-        select(
-          -c(
-            id,
-            key,
-            start_time,
-            end_time
-          )
+      } else {
+        processed_jobs <- data.frame(
+          job = character()
         )
+      }
 
       reactable(
         data = processed_jobs,
@@ -79,16 +87,22 @@ server <- function(id, state) {
               process_job_data(job_data)
             }
           )
+        ),
+        language = reactableLang(
+          noData = "No jobs found."
         )
       )
+
     })
 
     state$selected_job <- reactive({
       index <- getReactableState("job_list_table", "selected")
-      list(
-        "key" = job_list_data()[index, ]$key,
-        "id" = job_list_data()[index, ]$id
-      )
+      if (isTruthy(index)) {
+        list(
+          "key" = job_list_data()[index, ]$key,
+          "id" = job_list_data()[index, ]$id
+        )
+      }
     })
 
   })
