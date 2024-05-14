@@ -42,14 +42,14 @@ get_api_url <- function(
 
 #' Function to get a list of all apps belonging to the token
 #'
-#' @param app_mode_filter Character. The filter for app_mode in the API
-#' response. Default is "shiny".
+#' @param app_mode_filter Character list. The filter for app_mode in the API
+#' response. Default is list("shiny", "python-shiny", "quarto-shiny").
 #' @param endpoint Character. Default is "content"
 #' @param dry_run Logical. Whether to dry run the API for debugging.
 #' Default is FALSE
 #' @export
 get_app_list <- function(
-  app_mode_filter = "shiny",
+  app_mode_filter = list("shiny", "python-shiny", "quarto-shiny"),
   endpoint = "content",
   dry_run = FALSE
 ) {
@@ -70,7 +70,7 @@ get_app_list <- function(
       req_perform() %>%
       resp_body_string() %>%
       fromJSON() %>%
-      filter(app_mode == app_mode_filter)
+      filter(app_mode %in% app_mode_filter)
   }
 }
 
