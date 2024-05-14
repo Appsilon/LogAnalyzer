@@ -4,3 +4,8 @@
 .Ruserdata
 .DS_Store
 .Renviron
+
+/.quarto/
+/_site/
+_quarto.yml
+styles.css

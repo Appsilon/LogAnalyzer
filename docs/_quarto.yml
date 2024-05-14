@@ -1,0 +1,37 @@
+project:
+  type: website
+  render:
+    - README.md
+    - LICENSE.md
+
+website:
+  title: "LogAnalyzer"
+  page-footer: "By Appsilon with 💙 | Copyright 2024 ©"
+  repo-url: https://github.com/Appsilon/LogAnalyzer
+  google-analytics: "G-FQQZL5V93G"
+  navbar:
+    background: "#0099F9"
+    foreground: "#fff"
+    logo: "https://avatars0.githubusercontent.com/u/6096772"
+    left:
+      - text: Home
+        icon: house
+        href: README.md
+      - text: License
+        icon: key
+        href: LICENSE.md
+    right:
+      - text: GitHub
+        icon: github
+        href: https://github.com/Appsilon/LogAnalyzer
+      - text: Appsilon
+        href: https://appsilon.com/
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+execute:
+  freeze: auto
