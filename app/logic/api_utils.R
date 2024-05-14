@@ -70,7 +70,10 @@ get_app_list <- function(
       req_perform() %>%
       resp_body_string() %>%
       fromJSON() %>%
-      filter(app_mode %in% app_mode_filter)
+      filter(
+        app_mode %in% app_mode_filter,
+        app_role == "owner"
+      )
   }
 }
 
