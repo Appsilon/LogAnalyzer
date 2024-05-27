@@ -11,6 +11,8 @@ box::use(
   ],
   jsonlite[fromJSON],
   magrittr[`%>%`],
+  shiny[isTruthy],
+  yaml[read_yaml],
 )
 
 #' Simple function to get the access token from environment
@@ -45,12 +47,16 @@ get_api_url <- function(
 #' @param app_mode_filter Character list. The filter for app_mode in the API
 #' response. Default is list("shiny", "python-shiny", "quarto-shiny").
 #' @param endpoint Character. Default is "content"
+#' @param app_role Character. Read from the config.yml file. The possible value
+#' for this can be "owner" or "viewer". You can leave it blank in the config as
+#' "" to include both.
 #' @param dry_run Logical. Whether to dry run the API for debugging.
 #' Default is FALSE
 #' @export
 get_app_list <- function(
   app_mode_filter = list("shiny", "python-shiny", "quarto-shiny"),
   endpoint = "content",
+  app_role = read_yaml("config.yml", eval.expr = TRUE)$posit_api$app_role,
   dry_run = FALSE
 ) {
 
@@ -66,14 +72,19 @@ get_app_list <- function(
     api_request %>%
       req_dry_run()
   } else {
-    api_request %>%
+    response <- api_request %>%
       req_perform() %>%
       resp_body_string() %>%
       fromJSON() %>%
       filter(
-        app_mode %in% app_mode_filter,
-        app_role == "owner"
+        app_mode %in% app_mode_filter
       )
+
+    if (isTruthy(app_role)) {
+      response <- response[response$app_role == app_role, ]
+    } else {
+      response
+    }
   }
 }
 
