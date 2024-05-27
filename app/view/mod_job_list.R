@@ -24,7 +24,10 @@ box::use(
 
 box::use(
   app/logic/api_utils[get_job_list],
-  app/logic/job_list_utils[process_job_data],
+  app/logic/job_list_utils[
+    process_job_data,
+    render_job_data
+  ],
 )
 
 #' @export
@@ -50,31 +53,9 @@ server <- function(id, state) {
 
     output$job_list_table <- renderReactable({
 
-      if (length(job_list_data())) {
-        processed_jobs <- job_list_data() %>%
-          select(id, key, start_time, end_time) %>%
-          mutate(
-            job = paste(
-              id,
-              key,
-              start_time,
-              end_time,
-              sep = "_-_"
-            )
-          ) %>%
-          select(
-            -c(
-              id,
-              key,
-              start_time,
-              end_time
-            )
-          )
-      } else {
-        processed_jobs <- data.frame(
-          job = character()
-        )
-      }
+      processed_jobs <- process_job_data(
+        job_list_data()
+      )
 
       reactable(
         data = processed_jobs,
@@ -84,7 +65,7 @@ server <- function(id, state) {
         columns = list(
           job = colDef(
             cell = function(job_data) {
-              process_job_data(job_data)
+              render_job_data(job_data)
             }
           )
         ),
