@@ -8,16 +8,16 @@ box::use(
     colDef,
     getReactableState,
     reactable,
+    reactableLang,
     reactableOutput,
-    renderReactable,
-    reactableLang
+    renderReactable
   ],
   shiny[
+    isTruthy,
     moduleServer,
     NS,
     reactive,
-    req,
-    isTruthy
+    req
   ],
   shinycssloaders[withSpinner],
 )
