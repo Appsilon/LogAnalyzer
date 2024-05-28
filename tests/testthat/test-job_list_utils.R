@@ -1,7 +1,15 @@
 box::use(
+  testthat[
+    describe,
+    expect_equal,
+    it
+  ],
+)
+
+box::use(
   app/logic/job_list_utils[
     process_job_data
-  ]
+  ],
 )
 
 describe("process_job_data()", {
