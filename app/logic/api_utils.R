@@ -1,4 +1,5 @@
 box::use(
+  config[get],
   dplyr[filter],
   glue[glue],
   httr2[
@@ -12,7 +13,6 @@ box::use(
   jsonlite[fromJSON],
   magrittr[`%>%`],
   shiny[isTruthy],
-  yaml[read_yaml],
 )
 
 #' Simple function to get the access token from environment
@@ -56,7 +56,7 @@ get_api_url <- function(
 get_app_list <- function(
   app_mode_filter = list("shiny", "python-shiny", "quarto-shiny"),
   endpoint = "content",
-  app_role = read_yaml("config.yml", eval.expr = TRUE)$posit_api$app_role,
+  app_role = get("app_role"),
   dry_run = FALSE
 ) {
 
