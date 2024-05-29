@@ -1,8 +1,4 @@
 box::use(
-  dplyr[
-    mutate,
-    select
-  ],
   magrittr[`%>%`],
   reactable[
     colDef,
