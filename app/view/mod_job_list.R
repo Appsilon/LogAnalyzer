@@ -1,17 +1,15 @@
 box::use(
-  dplyr[
-    mutate,
-    select
-  ],
   magrittr[`%>%`],
   reactable[
     colDef,
     getReactableState,
     reactable,
+    reactableLang,
     reactableOutput,
     renderReactable
   ],
   shiny[
+    isTruthy,
     moduleServer,
     NS,
     reactive,
@@ -22,7 +20,10 @@ box::use(
 
 box::use(
   app/logic/api_utils[get_job_list],
-  app/logic/job_list_utils[process_job_data],
+  app/logic/job_list_utils[
+    process_job_data,
+    render_job_data
+  ],
 )
 
 #' @export
@@ -48,25 +49,9 @@ server <- function(id, state) {
 
     output$job_list_table <- renderReactable({
 
-      processed_jobs <- job_list_data() %>%
-        select(id, key, start_time, end_time) %>%
-        mutate(
-          job = paste(
-            id,
-            key,
-            start_time,
-            end_time,
-            sep = "_-_"
-          )
-        ) %>%
-        select(
-          -c(
-            id,
-            key,
-            start_time,
-            end_time
-          )
-        )
+      processed_jobs <- process_job_data(
+        job_list_data()
+      )
 
       reactable(
         data = processed_jobs,
@@ -76,19 +61,25 @@ server <- function(id, state) {
         columns = list(
           job = colDef(
             cell = function(job_data) {
-              process_job_data(job_data)
+              render_job_data(job_data)
             }
           )
+        ),
+        language = reactableLang(
+          noData = "No jobs found."
         )
       )
+
     })
 
     state$selected_job <- reactive({
       index <- getReactableState("job_list_table", "selected")
-      list(
-        "key" = job_list_data()[index, ]$key,
-        "id" = job_list_data()[index, ]$id
-      )
+      if (isTruthy(index) && length(job_list_data()) > 0) {
+        list(
+          "key" = job_list_data()[index, ]$key,
+          "id" = job_list_data()[index, ]$id
+        )
+      }
     })
 
   })
