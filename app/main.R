@@ -79,20 +79,12 @@ server <- function(id) {
 
     mod_app_table$server(
       "app_table",
-      app_list() %>%
-        select(
-          guid,
-          name,
-          r_version,
-          dashboard_url,
-          last_deployed_time
-        ),
+      app_list(),
       state
     )
 
     observeEvent(state$selected_app()$guid, {
       if (isTruthy(state$selected_app()$guid)) {
-
         output$job_list_pane <- renderUI({
           mod_job_list$ui(ns("job_list"))
         })
