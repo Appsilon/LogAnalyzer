@@ -25,6 +25,7 @@ box::use(
 
 box::use(
   app/logic/api_utils[get_app_list],
+  app/logic/empty_state_utils[generate_empty_state_ui],
   app/view/mod_app_table,
   app/view/mod_header,
   app/view/mod_job_list,
@@ -84,7 +85,9 @@ server <- function(id) {
     )
 
     observeEvent(state$selected_app()$guid, {
+
       if (isTruthy(state$selected_app()$guid)) {
+
         output$job_list_pane <- renderUI({
           mod_job_list$ui(ns("job_list"))
         })
@@ -93,12 +96,16 @@ server <- function(id) {
           "job_list",
           state
         )
+
       } else {
+
         removeUI(ns("job_list_pane"))
+
       }
-    }, ignoreInit = TRUE, ignoreNULL = TRUE)
+    }, ignoreInit = FALSE, ignoreNULL = FALSE)
 
     observeEvent(state$selected_job()$key, {
+
       if (isTruthy(state$selected_job()$key)) {
 
         output$logs_pane <- renderUI({
@@ -110,21 +117,22 @@ server <- function(id) {
           state
         )
       } else {
-        output$logs_pane <- renderUI({
-          div(
-            class = "empty-state-container",
-            p(
-              class = "empty-state-text",
-              "Select an application and a job to view logs"
-            ),
-            img(
-              src = "static/illustrations/empty_state.svg",
-              class = "empty-state-image",
-              alt = "Select an application and a job to view logs"
-            )
+
+        if (class(app_list()) != "data.frame") {
+          empty_state <- generate_empty_state_ui(
+            text = "Oops! Can't read apps from Posit Connect.",
+            image_path = "static/illustrations/missing_apps.svg"
           )
-        })
+        } else {
+          empty_state <- generate_empty_state_ui(
+            text = "Select an application and a job to view logs",
+            image_path = "static/illustrations/empty_state.svg"
+          )
+        }
+
+        output$logs_pane <- empty_state
       }
+
     }, ignoreInit = FALSE, ignoreNULL = FALSE)
 
   })
