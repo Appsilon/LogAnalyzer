@@ -118,7 +118,7 @@ server <- function(id) {
               "Select an application and a job to view logs"
             ),
             img(
-              src = "static/empty_state.svg",
+              src = "static/illustrations/empty_state.svg",
               class = "empty-state-image",
               alt = "Select an application and a job to view logs"
             )
