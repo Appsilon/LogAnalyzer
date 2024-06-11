@@ -125,7 +125,7 @@ server <- function(id) {
           )
         } else {
           empty_state <- generate_empty_state_ui(
-            text = "Select an application and a job to view logs",
+            text = "Select an application and a job to view logs.",
             image_path = "static/illustrations/empty_state.svg"
           )
         }
