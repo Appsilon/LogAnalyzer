@@ -10,6 +10,10 @@
   font-family: "Maven Pro", sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 .vertical-line {
   border-left: 1px $grey2-border solid;
   height: 80%;

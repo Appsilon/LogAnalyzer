@@ -14,6 +14,12 @@ The LogAnalyzer open-source app is a simple, plug and play application developed
 
 -   `[app/logic/api_utils.R` - `get_app_list()]` Posit Connect differentiates apps with two `app_role` values: `owner` and `viewer`. You can toggle between these using the `config.yml` file. The set value is `owner`. If you want to use both together, you can simply set the value to a blank character `""`.
 
+# FAQs
+
+- I get `"Oops! Can't read apps from Posit Connect."` on the rightmost image?
+    - This may mean that the Posit Connect API's response did not send proper data.
+    - So far, one documented reason for this is that OAuth on Posit Connect instances may prevent the `/content` endpoint from sending app data.
+
 # Credits
 
 It was our collaboration with <img src="img/elkem_logo.png" alt="Elkem" width="50"/> which led to the creation of this app. The initial idea came from use-cases where we realised we wanted to track all the logs and be able to read them properly since Posit Connect was the de facto deployment environment. When we made this app, we realised there was potential in sharing this with the rest of the community and invite everyone to use it and add it. We appreciate and thank Elkem for their openness to share it with the world.

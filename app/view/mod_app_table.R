@@ -8,10 +8,12 @@ box::use(
     colDef,
     getReactableState,
     reactable,
+    reactableLang,
     reactableOutput,
     renderReactable
   ],
   shiny[
+    isTruthy,
     moduleServer,
     NS,
     reactive
@@ -41,23 +43,37 @@ server <- function(id, app_list, state) {
 
     output$app_table <- renderReactable({
 
-      processed_apps <- app_list %>%
-        mutate(
-          name = paste(
+      if (length(app_list) > 0 && inherits(app_list, "data.frame")) {
+        processed_apps <- app_list %>%
+          select(
+            guid,
             name,
             r_version,
             dashboard_url,
-            last_deployed_time,
-            sep = "_-_"
-          )
-        ) %>%
-        select(
-          -c(
-            r_version,
-            dashboard_url,
             last_deployed_time
+          ) %>%
+          mutate(
+            name = paste(
+              name,
+              r_version,
+              dashboard_url,
+              last_deployed_time,
+              sep = "_-_"
+            )
+          ) %>%
+          select(
+            -c(
+              r_version,
+              dashboard_url,
+              last_deployed_time
+            )
           )
+      } else {
+        processed_apps <- data.frame(
+          guid = character(),
+          name = character()
         )
+      }
 
       reactable(
         data = processed_apps,
@@ -75,16 +91,21 @@ server <- function(id, app_list, state) {
               process_app_data(app_data)
             }
           )
+        ),
+        language = reactableLang(
+          noData = "No apps found."
         )
       )
     })
 
     state$selected_app <- reactive({
       index <- getReactableState("app_table", "selected")
-      list(
-        "guid" = app_list[index, ]$guid,
-        "name" = app_list[index, ]$name
-      )
+      if (isTruthy(index) && length(app_list > 0)) {
+        list(
+          "guid" = app_list[index, ]$guid,
+          "name" = app_list[index, ]$name
+        )
+      }
     })
 
   })
