@@ -43,7 +43,7 @@ server <- function(id, app_list, state) {
 
     output$app_table <- renderReactable({
 
-      if (length(app_list) > 0 && class(app_list) == "data.frame") {
+      if (length(app_list) > 0 && inherits(app_list, "data.frame")) {
         processed_apps <- app_list %>%
           select(
             guid,

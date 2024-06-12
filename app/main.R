@@ -118,7 +118,7 @@ server <- function(id) {
         )
       } else {
 
-        if (class(app_list()) != "data.frame") {
+        if (!inherits(app_list(), "data.frame")) {
           empty_state <- renderUI({
             generate_empty_state_ui(
               text = "Oops! Can't read apps from Posit Connect.",
