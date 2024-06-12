@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -140,6 +140,7 @@ gtag('config', 'G-FQQZL5V93G', { 'anonymize_ip': true});
   <li><a href="#loganalyzer" id="toc-loganalyzer" class="nav-link active" data-scroll-target="#loganalyzer">LogAnalyzer</a></li>
   <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How it works?</a></li>
   <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a></li>
+  <li><a href="#faqs" id="toc-faqs" class="nav-link" data-scroll-target="#faqs">FAQs</a></li>
   <li><a href="#credits" id="toc-credits" class="nav-link" data-scroll-target="#credits">Credits</a>
   <ul class="collapse">
   <li><a href="#appsilon" id="toc-appsilon" class="nav-link" data-scroll-target="#appsilon">Appsilon</a></li>
@@ -170,6 +171,16 @@ gtag('config', 'G-FQQZL5V93G', { 'anonymize_ip': true});
 <h1>Configuration</h1>
 <ul>
 <li><code>[app/logic/api_utils.R</code> - <code>get_app_list()]</code> Posit Connect differentiates apps with two <code>app_role</code> values: <code>owner</code> and <code>viewer</code>. You can toggle between these using the <code>config.yml</code> file. The set value is <code>owner</code>. If you want to use both together, you can simply set the value to a blank character <code>""</code>.</li>
+</ul>
+</section>
+<section id="faqs" class="level1">
+<h1>FAQs</h1>
+<ul>
+<li>I get <code>"Oops! Can't read apps from Posit Connect."</code> on the rightmost image?
+<ul>
+<li>This may mean that the Posit Connect API’s response did not send proper data.</li>
+<li>So far, one documented reason for this is that OAuth on Posit Connect instances may prevent the <code>/content</code> endpoint from sending app data.</li>
+</ul></li>
 </ul>
 </section>
 <section id="credits" class="level1">
