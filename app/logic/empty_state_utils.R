@@ -4,7 +4,7 @@ box::use(
     img,
     p,
     renderUI
-  ]
+  ],
 )
 
 #' @description Function to generate an empty state UI
