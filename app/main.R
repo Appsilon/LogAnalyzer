@@ -102,7 +102,7 @@ server <- function(id) {
         removeUI(ns("job_list_pane"))
 
       }
-    }, ignoreInit = FALSE, ignoreNULL = FALSE)
+    }, ignoreNULL = FALSE)
 
     observeEvent(state$selected_job()$key, {
 
@@ -137,7 +137,7 @@ server <- function(id) {
         output$logs_pane <- empty_state
       }
 
-    }, ignoreInit = FALSE, ignoreNULL = FALSE)
+    }, ignoreNULL = FALSE)
 
   })
 }
