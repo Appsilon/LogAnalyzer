@@ -119,15 +119,19 @@ server <- function(id) {
       } else {
 
         if (class(app_list()) != "data.frame") {
-          empty_state <- generate_empty_state_ui(
-            text = "Oops! Can't read apps from Posit Connect.",
-            image_path = "static/illustrations/missing_apps.svg"
-          )
+          empty_state <- renderUI({
+            generate_empty_state_ui(
+              text = "Oops! Can't read apps from Posit Connect.",
+              image_path = "static/illustrations/missing_apps.svg"
+            )
+          })
         } else {
-          empty_state <- generate_empty_state_ui(
-            text = "Select an application and a job to view logs.",
-            image_path = "static/illustrations/empty_state.svg"
-          )
+          empty_state <- renderUI({
+            generate_empty_state_ui(
+              text = "Select an application and a job to view logs.",
+              image_path = "static/illustrations/empty_state.svg"
+            )
+          })
         }
 
         output$logs_pane <- empty_state

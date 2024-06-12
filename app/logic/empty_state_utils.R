@@ -15,18 +15,16 @@ generate_empty_state_ui <- function(
   text = "Select an application and a job to view logs",
   image_path = "static/illustrations/empty_state.svg"
 ) {
-  renderUI({
-    div(
-      class = "empty-state-container",
-      p(
-        class = "empty-state-text",
-        text
-      ),
-      img(
-        src = image_path,
-        class = "empty-state-image",
-        alt = text
-      )
+  div(
+    class = "empty-state-container",
+    p(
+      class = "empty-state-text",
+      text
+    ),
+    img(
+      src = image_path,
+      class = "empty-state-image",
+      alt = text
     )
-  })
+  )
 }
