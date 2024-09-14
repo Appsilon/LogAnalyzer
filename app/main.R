@@ -1,6 +1,9 @@
 # nolint start: box_func_import_count_linter
 box::use(
-  dplyr[select],
+  dplyr[
+    filter,
+    select
+  ],
   magrittr[`%>%`],
   shiny[
     div,
@@ -20,6 +23,9 @@ box::use(
     uiOutput
   ],
   shinycssloaders[withSpinner],
+  stringr[
+    str_split_1
+  ],
 )
 # nolint end
 
@@ -75,7 +81,15 @@ server <- function(id) {
     state$selected_job <- reactive({})
 
     app_list <- reactive({
-      get_app_list()
+      # This filter exists solely for Shiny Contest and to preserve privacy for
+      # the list of apps which is, otherwise, quite long.
+      get_app_list() |>
+        filter(
+          guid %in% str_split_1(
+            Sys.getenv("APP_LIST"),
+            ","
+          )
+        )
     })
 
     mod_app_table$server(
