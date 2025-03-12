@@ -5,8 +5,6 @@ box::use(
     isTruthy,
     moduleServer,
     NS,
-    reactive,
-    reactiveValues,
     renderUI,
     uiOutput
   ],
@@ -61,28 +59,14 @@ server <- function(id) {
 
     mod_header$server("header")
 
-    state <- reactiveValues()
-    state$selected_app <- reactive({})
-    state$selected_job <- reactive({})
+    selected_app_ <- mod_app_table$server("app_table", app_list)$selected_app_
 
-    mod_app_table$server(
-      "app_table",
-      app_list,
-      state
-    )
+    selected_job_ <- mod_job_list$server("job_list", selected_app_)$selected_job_
 
-    mod_job_list$server(
-      "job_list",
-      state
-    )
-
-    mod_logs$server(
-      "logs",
-      state
-    )
+    mod_logs$server("logs", selected_app_, selected_job_)
 
     output$job_list_pane <- renderUI({
-      if (!isTruthy(state$selected_app()$guid)) {
+      if (!isTruthy(selected_app_()$guid)) {
         return(NULL)
       }
 
@@ -99,7 +83,7 @@ server <- function(id) {
         )
       }
 
-      if (!isTruthy(state$selected_job()$key)) {
+      if (!isTruthy(selected_job_()$key)) {
         return(
           generate_empty_state_ui(
             text = "Select an application and a job to view logs.",

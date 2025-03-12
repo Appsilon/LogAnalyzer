@@ -50,7 +50,7 @@ ui <- function(id) {
 }
 
 #' @export
-server <- function(id, state) {
+server <- function(id, selected_app_, selected_job) {
   moduleServer(id, function(input, output, session) {
 
     ns <- session$ns
@@ -58,20 +58,20 @@ server <- function(id, state) {
     output$download <- downloadHandler(
       filename = function() {
         glue(
-          "{state$selected_app()$name}_{state$selected_job()$id}.txt"
+          "{selected_app_()$name}_{selected_job_()$id}.txt"
         )
       },
       content = function(file) {
         logs <- download_job_logs(
-          state$selected_app()$guid,
-          state$selected_job()$key
+          selected_app_()$guid,
+          selected_job_()$key
         )
         writeLines(logs, file)
       }
     )
 
-    observeEvent(state$selected_job()$key, {
-      req(state$selected_job()$key)
+    observeEvent(selected_job_()$key, {
+      req(selected_job_()$key)
       output$download_logs <- renderUI({
         downloadButton(
           outputId = ns("download"),
@@ -83,10 +83,10 @@ server <- function(id, state) {
     })
 
     logs_data <- reactive({
-      req(state$selected_job()$key)
+      req(selected_job_()$key)
       get_job_logs(
-        state$selected_app()$guid,
-        state$selected_job()$key
+        selected_app_()$guid,
+        selected_job_()$key
       )
     })
 
