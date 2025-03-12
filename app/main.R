@@ -68,76 +68,59 @@ server <- function(id) {
 
     ns <- session$ns
 
+    app_list <- get_app_list()
+
     mod_header$server("header")
 
     state <- reactiveValues()
     state$selected_app <- reactive({})
     state$selected_job <- reactive({})
 
-    app_list <- reactive({
-      get_app_list()
-    })
-
     mod_app_table$server(
       "app_table",
-      app_list(),
+      app_list,
       state
     )
 
-    observeEvent(state$selected_app()$guid, {
+    mod_job_list$server(
+      "job_list",
+      state
+    )
 
-      if (isTruthy(state$selected_app()$guid)) {
+    mod_logs$server(
+      "logs",
+      state
+    )
 
-        output$job_list_pane <- renderUI({
-          mod_job_list$ui(ns("job_list"))
-        })
-
-        mod_job_list$server(
-          "job_list",
-          state
-        )
-
-      } else {
-
-        removeUI(ns("job_list_pane"))
-
-      }
-    }, ignoreNULL = FALSE)
-
-    observeEvent(state$selected_job()$key, {
-
-      if (isTruthy(state$selected_job()$key)) {
-
-        output$logs_pane <- renderUI({
-          mod_logs$ui(ns("logs"))
-        })
-
-        mod_logs$server(
-          "logs",
-          state
-        )
-      } else {
-
-        if (!inherits(app_list(), "data.frame")) {
-          empty_state <- renderUI({
-            generate_empty_state_ui(
-              text = "Oops! Can't read apps from Posit Connect.",
-              image_path = "static/illustrations/missing_apps.svg"
-            )
-          })
-        } else {
-          empty_state <- renderUI({
-            generate_empty_state_ui(
-              text = "Select an application and a job to view logs.",
-              image_path = "static/illustrations/empty_state.svg"
-            )
-          })
-        }
-
-        output$logs_pane <- empty_state
+    output$job_list_pane <- renderUI({
+      if (!isTruthy(state$selected_app()$guid)) {
+        return(NULL)
       }
 
-    }, ignoreNULL = FALSE)
+      mod_job_list$ui(ns("job_list"))
+    })
+
+    output$logs_pane <- renderUI({
+      if (!is.data.frame(app_list) || nrow(app_list) == 0) {
+        return(
+          generate_empty_state_ui(
+            text = "Oops! Can't read apps from Posit Connect.",
+            image_path = "static/illustrations/missing_apps.svg"
+          )
+        )
+      }
+
+      if (!isTruthy(state$selected_job()$key)) {
+        return(
+          generate_empty_state_ui(
+            text = "Select an application and a job to view logs.",
+            image_path = "static/illustrations/empty_state.svg"
+          )
+        )
+      }
+
+      mod_logs$ui(ns("logs"))
+    })
 
   })
 }
