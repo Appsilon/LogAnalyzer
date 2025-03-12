@@ -70,16 +70,17 @@ server <- function(id, selected_app_, selected_job) {
       }
     )
 
-    observeEvent(selected_job_()$key, {
-      req(selected_job_()$key)
-      output$download_logs <- renderUI({
-        downloadButton(
-          outputId = ns("download"),
-          label = NULL,
-          icon = icon("download"),
-          class = "logs-download"
-        )
-      })
+    output$download_logs <- renderUI({
+      if (is.null(selected_job_()$key)) {
+        return(NULL)
+      }
+
+      downloadButton(
+        outputId = ns("download"),
+        label = NULL,
+        icon = icon("download"),
+        class = "logs-download"
+      )
     })
 
     logs_data <- reactive({
