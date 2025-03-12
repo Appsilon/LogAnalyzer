@@ -75,7 +75,7 @@ server <- function(id, selected_app_) {
     list(
       selected_job_ = reactive({
         index <- getReactableState("job_list_table", "selected")
-        if (isTruthy(index) && length(job_list_data()) > 0) {
+        if (isTruthy(index) && nrow(job_list_data()) > 0) {
           list(
             "key" = job_list_data()[index, ]$key,
             "id" = job_list_data()[index, ]$id

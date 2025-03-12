@@ -43,7 +43,7 @@ server <- function(id, app_list) {
 
     output$app_table <- renderReactable({
 
-      if (length(app_list) > 0 && inherits(app_list, "data.frame")) {
+      if (nrow(app_list) > 0 && inherits(app_list, "data.frame")) {
         processed_apps <- app_list %>%
           select(
             guid,
@@ -101,7 +101,7 @@ server <- function(id, app_list) {
     list(
       selected_app_ = reactive({
         index <- getReactableState("app_table", "selected")
-        if (isTruthy(index) && length(app_list > 0)) {
+        if (isTruthy(index) && nrow(app_list) > 0) {
           list(
             "guid" = app_list[index, ]$guid,
             "name" = app_list[index, ]$name
