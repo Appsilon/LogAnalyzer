@@ -18,7 +18,7 @@ check_text_error <- function(
   ignore_case = TRUE
 ) {
   grepl(
-    paste(wordlist, collapse = "|"),
+    paste0("^", wordlist, collapse = "|"),
     text,
     ignore.case = ignore_case
   )

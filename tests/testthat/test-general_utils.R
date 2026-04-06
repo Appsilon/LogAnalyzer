@@ -34,6 +34,19 @@ describe("check_text_error()", {
     )
   })
 
+  it("handles 'no error' and similar cases gracefully", {
+    expect_true(
+      !check_text_error(
+        "No error detected"
+      )
+    )
+    expect_true(
+      !check_text_error(
+        "No errors found"
+      )
+    )
+  })
+
   it("returns FALSE for non-error keywords", {
     expect_true(
       !check_text_error(
