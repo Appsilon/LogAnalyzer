@@ -1,5 +1,32 @@
 default:
   rhino_log_level: !expr Sys.getenv("RHINO_LOG_LEVEL", "INFO")
   rhino_log_file: !expr Sys.getenv("RHINO_LOG_FILE", NA)
+  llm:
+    enabled: FALSE
+    provider: "openai"
+    model: "gpt-4o"
+    api_key: !expr Sys.getenv("LLM_API_KEY", NA)
+    system_prompt: !expr readLines("app/static/llm_system_prompt.txt") |> paste(collapse = " ")
   app_role: "owner"
-
+  branding:
+    logo:
+      src: "static/logo.png"
+      alt: "Appsilon logo"
+      href: "https://demo.appsilon.com"
+    colors:
+        primary: "#0099f9"
+        red: "#a50e0e"
+        red-highlight: "#fce8e650"
+        green: "#3a5a40"
+        green-highlight: "#e0f0df50"
+        yellow: "#a58e0e"
+        yellow-highlight: "#f0ebbb50"
+        grey1: "#eaeaea"
+        grey1-border: "#d8d8d8"
+        grey2: "#f8f8f8"
+        grey2-border: "#eee"
+        black: black
+        white: white
+        grey-text: grey
+        black-text: "#333"
+        selected-row: "#00000010"

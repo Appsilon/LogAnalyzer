@@ -38,12 +38,12 @@ ui <- function(id) {
 }
 
 #' @export
-server <- function(id, app_list, state) {
+server <- function(id, app_list) {
   moduleServer(id, function(input, output, session) {
 
     output$app_table <- renderReactable({
 
-      if (length(app_list) > 0 && inherits(app_list, "data.frame")) {
+      if (nrow(app_list) > 0 && inherits(app_list, "data.frame")) {
         processed_apps <- app_list %>%
           select(
             guid,
@@ -80,6 +80,7 @@ server <- function(id, app_list, state) {
         searchable = TRUE,
         borderless = TRUE,
         pagination = FALSE,
+        onClick = "select",
         selection = "single",
         columns = list(
           guid = colDef(
@@ -98,15 +99,17 @@ server <- function(id, app_list, state) {
       )
     })
 
-    state$selected_app <- reactive({
-      index <- getReactableState("app_table", "selected")
-      if (isTruthy(index) && length(app_list > 0)) {
-        list(
-          "guid" = app_list[index, ]$guid,
-          "name" = app_list[index, ]$name
-        )
-      }
-    })
+    list(
+      selected_app_ = reactive({
+        index <- getReactableState("app_table", "selected")
+        if (isTruthy(index) && nrow(app_list) > 0) {
+          list(
+            "guid" = app_list[index, ]$guid,
+            "name" = app_list[index, ]$name
+          )
+        }
+      })
+    )
 
   })
 

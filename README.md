@@ -19,6 +19,14 @@ The LogAnalyzer open-source app is a simple, plug and play application developed
 - I get `"Oops! Can't read apps from Posit Connect."` on the rightmost image?
     - This may mean that the Posit Connect API's response did not send proper data.
     - So far, one documented reason for this is that OAuth on Posit Connect instances may prevent the `/content` endpoint from sending app data.
+- How do I rebrand the application?
+    - You can edit the branding in the `config.yml` file. You'll find the `colors` key which will build the CSS.
+    - The three status colors and their highlights e.g. `red` and `red-highlight` color the logs for you.
+    - The `primary` color is the primary theme for your application. This also affects SVGs.
+    - The blacks, whites and greys fill in the rest of the UI elements such as text, separator et al.
+- How do I recolor the SVGs?
+    - This requires some creativity. We recommend replacing the primary color hex which you can find in the `.svg` file as `fill="#hexcde"` to `PRIMARY`.
+    - We use this as a default value in the function that replaces it but you are welcome to use another value and modify the function.
 
 # Credits
 

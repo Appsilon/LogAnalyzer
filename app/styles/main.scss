@@ -15,7 +15,7 @@ body {
 }
 
 .vertical-line {
-  border-left: 1px $grey2-border solid;
+  border-left: 1px var(--grey2-border) solid;
   height: 80%;
   align-self: center;
 }

@@ -18,19 +18,18 @@ process_log_data <- function(
   log_data
 ) {
   log_info <- strsplit(log_data, "_-_")[[1]]
-  status <- get_status_info(log_info[1], log_info[3])
   div(
-    class = glue("log-entry {status[1]}-highlight"),
+    class = glue("log-entry {log_info[4]}-highlight"),
     icon(
-      name = status[2],
+      name = log_info[5],
       class = glue(
-        "log-status {status[1]}-text fa-solid"
+        "log-status {log_info[4]}-text fa-solid"
       ),
     ),
     div(
       class = "log-info-block",
       div(
-        class = glue("log-info {status[1]}-text"),
+        class = glue("log-info {log_info[4]}-text"),
         log_info[3]
       ),
       div(
@@ -41,15 +40,18 @@ process_log_data <- function(
   )
 }
 
+#' @export
 get_status_info <- function(
   output_type,
   log_data
 ) {
   if (output_type == "stdout") {
-    c("green", "circle-info")
+    status_list <- list("green", "circle-info")
   } else if (output_type == "stderr" && check_text_error(log_data)) {
-    c("red", "circle-xmark")
+    status_list <- list("red", "circle-xmark")
   } else {
-    c("yellow", "circle-info")
+    status_list <- list("yellow", "circle-info")
   }
+  names(status_list) <- c("entries.status", "entries.icon")
+  status_list
 }

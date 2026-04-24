@@ -1,5 +1,4 @@
 box::use(
-  magrittr[`%>%`],
   reactable[
     colDef,
     getReactableState,
@@ -39,12 +38,12 @@ ui <- function(id) {
 }
 
 #' @export
-server <- function(id, state) {
+server <- function(id, selected_app_) {
   moduleServer(id, function(input, output, session) {
 
     job_list_data <- reactive({
-      req(state$selected_app()$guid)
-      get_job_list(state$selected_app()$guid)
+      req(selected_app_()$guid)
+      get_job_list(selected_app_()$guid)
     })
 
     output$job_list_table <- renderReactable({
@@ -58,6 +57,7 @@ server <- function(id, state) {
         selection = "single",
         borderless = TRUE,
         pagination = FALSE,
+        onClick = "select",
         columns = list(
           job = colDef(
             cell = function(job_data) {
@@ -72,15 +72,17 @@ server <- function(id, state) {
 
     })
 
-    state$selected_job <- reactive({
-      index <- getReactableState("job_list_table", "selected")
-      if (isTruthy(index) && length(job_list_data()) > 0) {
-        list(
-          "key" = job_list_data()[index, ]$key,
-          "id" = job_list_data()[index, ]$id
-        )
-      }
-    })
+    list(
+      selected_job_ = reactive({
+        index <- getReactableState("job_list_table", "selected")
+        if (isTruthy(index) && nrow(job_list_data()) > 0) {
+          list(
+            "key" = job_list_data()[index, ]$key,
+            "id" = job_list_data()[index, ]$id
+          )
+        }
+      })
+    )
 
   })
 }

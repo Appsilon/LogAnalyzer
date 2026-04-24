@@ -1,40 +1,23 @@
-$red: #a50e0e;
-$red-highlight: #fce8e650;
-$green: #3a5a40;
-$green-highlight: #e0f0df50;
-$yellow: #a58e0e;
-$yellow-highlight: #f0ebbb50;
-$grey1: #eaeaea;
-$grey1-border: #d8d8d8;
-$grey2: #f8f8f8;
-$grey2-border: #eee;
-$black: black;
-$white: white;
-$grey-text: grey;
-$black-text: #333;
-$selected-row: #00000010;
-$appsilon-blue: #0099f9;
-
 .red-text {
-  color: $red;
+  color: var(--red);
 }
 
 .green-text {
-  color: $green;
+  color: var(--green);
 }
 
 .yellow-text {
-  color: $yellow;
+  color: var(--yellow);
 }
 
 .red-highlight {
-  background-color: $red-highlight;
+  background-color: var(--red-highlight);
 }
 
 .green-highlight {
-  background-color: $green-highlight;
+  background-color: var(--green-highlight);
 }
 
 .yellow-highlight {
-  background-color: $yellow-highlight;
+  background-color: var(--yellow-highlight);
 }

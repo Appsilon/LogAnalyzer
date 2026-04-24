@@ -5,6 +5,11 @@
     padding: 0 !important;
   }
 
+  .rt-search {
+    width: 85% !important;
+    align-self: flex-start !important;
+  }
+
   > div {
     text-align: center;
 
@@ -16,9 +21,30 @@
       }
 
       .empty-state-text {
-        color: $grey-text;
+        color: var(--grey-text);
         margin-bottom: 40px;
       }
+    }
+  }
+}
+
+.logs-llm-modal {
+  .modal-dialog {
+    text-align: justify;
+
+    h2,
+    h3 {
+      color: var(--primary);
+    }
+
+    .btn {
+      background: var(--red-highlight);
+      border-radius: 0;
+      border: 1px solid var(--red);
+    }
+
+    .modal-content {
+      border-radius: 0;
     }
   }
 }
@@ -52,13 +78,16 @@
     }
   }
 
-  .logs-download {
+  .logs-options {
     position: absolute;
     z-index: 2;
     right: 0;
     margin: 10px;
-    background: 0;
-    border-radius: 0;
-    padding: 5px 10px;
+
+    .logs-options-button {
+      background: 0;
+      border-radius: 0;
+      padding: 5px 10px;
+    }
   }
 }

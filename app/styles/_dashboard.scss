@@ -3,8 +3,8 @@
 }
 
 .content-wrapper {
-  background: $white;
-  color: $black-text;
+  background: var(--white);
+  color: var(--black-text);
   height: 90vh;
 }
 
@@ -40,7 +40,7 @@
   }
 
   .rt-tr-selected {
-    background: $selected-row;
+    background: var(--selected-row);
   }
 
   .app-table {
@@ -56,7 +56,7 @@
   }
 
   .logs {
-    background: $white;
+    background: var(--white);
     width: 55%;
     height: 100%;
     overflow-y: auto;
