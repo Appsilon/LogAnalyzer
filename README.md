@@ -1,5 +1,7 @@
 # LogAnalyzer
 
+> **Note:** This is a test PR from the shinybot + mediforce automated pipeline integration test — safe to close without merging.
+
 The LogAnalyzer open-source app is a simple, plug and play application developed first in collaboration with [Elkem](https://www.elkem.com/). The app provides an ability to get semantically coloured logs for applications deployed on Posit Connect by simply changing the default environment variables and deploying it on Posit Connect. Given the general usefulness of the app, we have decided to share it with the wider community to use and improve upon it. No more sifting through long text files; you can simply find the reds and see where things break. It has never been easier to investigate what goes wrong with your applications.
 
 # How it works?
