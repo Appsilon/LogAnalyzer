@@ -15,6 +15,7 @@ default:
       href: "https://demo.appsilon.com"
     colors:
         primary: "#0099f9"
+        purple: "#7c3aed"
         red: "#a50e0e"
         red-highlight: "#fce8e650"
         green: "#3a5a40"
